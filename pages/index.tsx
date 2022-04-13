@@ -12,6 +12,13 @@ const Home: NextPage = () => {
         <li>b</li>
         <li>c</li>
       </ol>
+      <form>
+        <label>
+          やりたいこと：
+          <input type="text" />
+        </label>
+        <button>追加</button>
+      </form>
     </div>
   )
 }
