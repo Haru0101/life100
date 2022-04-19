@@ -7,13 +7,14 @@ const Home: NextPage = () => {
     'テスト2',
     'テスト3',
   ]);
+  const listItems = items.map((item, index) => {
+    return <li key={index}>{item}</li>;
+  });
   return (
     <div>
       <h1>人生でやりたい100のこと</h1>
       <ol>
-        <li>a</li>
-        <li>b</li>
-        <li>c</li>
+        {listItems}
       </ol>
       <form>
         <label>
