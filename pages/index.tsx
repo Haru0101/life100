@@ -2,11 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react';
 
 const Home: NextPage = () => {
-  const [items, setItems] = useState([
-    'テスト1',
-    'テスト2',
-    'テスト3',
-  ]);
+  const [items, setItems] = useState([]);
   const listItems = items.map((item, index) => {
     return <li key={index}>{item}</li>;
   });
