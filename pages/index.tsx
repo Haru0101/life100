@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react';
 
 const Home: NextPage = () => {
-  const items = useState([
+  const [items, setItems] = useState([
     'テスト1',
     'テスト2',
     'テスト3',
