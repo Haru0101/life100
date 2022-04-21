@@ -6,6 +6,7 @@ const Home: NextPage = () => {
   const [newItem, setNewItem] = useState("");
 
   const addItem = () => {
+    if (newItem === "") return;
     setItems([...items, newItem]);
     setNewItem("");
   }
