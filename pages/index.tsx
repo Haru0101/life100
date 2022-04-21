@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   });
   const [newItem, setNewItem] = useState("");
 
-  const addItems = () => {
+  const addItem = () => {
     setItems([...items, newItem]);
     setNewItem("");
   }
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           やりたいこと：
           <input type="text" onChange={e => setNewItem(e.target.value)} value={newItem}/>
         </label>
-        <button onClick={addItems}>追加</button>
+        <button onClick={addItem}>追加</button>
       </form>
     </div>
   )
