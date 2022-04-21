@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useState } from 'react';
 
 const Home: NextPage = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<string[]>([]);
   const listItems = items.map((item, index) => {
     return <li key={index}>{item}</li>;
   });
