@@ -3,9 +3,6 @@ import { useState } from 'react';
 
 const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
-  const listItems = items.map((item, index) => {
-    return <li key={index}>{item}</li>;
-  });
   const [newItem, setNewItem] = useState("");
 
   const addItem = () => {
@@ -13,9 +10,20 @@ const Home: NextPage = () => {
     setNewItem("");
   }
 
+  const deleteItem = (index: number): void => {
+    const tempItems = items.filter((_, itemIndex) => {
+      return index !== itemIndex;
+    })
+    setItems(tempItems);
+  }
+
   const submitForm = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
   }
+
+  const listItems = items.map((item, index) => {
+    return <li key={index}>{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
+  });
 
   return (
     <div>
