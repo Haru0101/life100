@@ -33,9 +33,14 @@ const Home: NextPage = () => {
     e.preventDefault();
   }
 
-  const listItems = items.map((item, index) => {
-    return <li key={index}>{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
-  });
+  const fetchLocalStorage = () => {
+    if (!localStorage.getItem('items')) return;
+    setItems(JSON.parse(localStorage.getItem('items') ?? ""));
+  }
+
+  useEffect(() => {
+    fetchLocalStorage();
+  }, [])
 
   return (
     <div>
