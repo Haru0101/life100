@@ -5,22 +5,28 @@ const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
   const [newItem, setNewItem] = useState("");
 
+  const listItems = items.map((item, index) => {
+    return <li key={index}>{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
+  });
+
   const addItem = () => {
     if (newItem === "") return;
-    setItems([...items, newItem]);
+    const newItems = [...items, newItem];
+    setItems(newItems);
     setNewItem("")
-    updateLocalStorage();
+    updateLocalStorage(newItems);
   }
 
-  const updateLocalStorage = () => {
-    localStorage.setItem('items', JSON.stringify(items))
+  const updateLocalStorage = (newItems: string[]) => {
+    localStorage.setItem('items', JSON.stringify(newItems))
   }
 
   const deleteItem = (index: number): void => {
-    const tempItems = items.filter((_, itemIndex) => {
+    const newItems = items.filter((_, itemIndex) => {
       return index !== itemIndex;
     })
-    setItems(tempItems);
+    setItems(newItems);
+    updateLocalStorage(newItems);
   }
 
   const submitForm = (e: { preventDefault: () => void; }) => {
