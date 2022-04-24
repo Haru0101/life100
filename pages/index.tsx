@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
@@ -8,7 +8,12 @@ const Home: NextPage = () => {
   const addItem = () => {
     if (newItem === "") return;
     setItems([...items, newItem]);
-    setNewItem("");
+    setNewItem("")
+    updateLocalStorage();
+  }
+
+  const updateLocalStorage = () => {
+    localStorage.setItem('items', JSON.stringify(items))
   }
 
   const deleteItem = (index: number): void => {
