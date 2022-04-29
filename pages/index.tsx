@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1>人生でやりたい100のこと</h1>
+      <h1>LIFE 100</h1>
       <ol>
         {listItems}
       </ol>
