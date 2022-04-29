@@ -54,12 +54,13 @@ const Home: NextPage = () => {
         {listItems}
       </ol>
       <form onSubmit={submitForm}>
-        <label>
-          やりたいこと：
-          <input type="text" onChange={e => setNewItem(e.target.value)} value={newItem}/>
-        </label>
-        <button onClick={addItem}>追加</button>
-        <button onClick={resetAllItems}>リセット</button>
+        <div>
+          <label>
+            やりたいこと：
+            <input type="text" onChange={e => setNewItem(e.target.value)} value={newItem}/>
+          </label><button onClick={addItem}>追加</button>
+        </div>
+        <div><button onClick={resetAllItems}>リセット</button></div>
       </form>
     </div>
   )
