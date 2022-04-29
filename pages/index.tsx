@@ -5,19 +5,24 @@ const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
   const [newItem, setNewItem] = useState("");
 
-  const listItems = items.map((item, index) => {
+  const listItems = items?.map((item, index) => {
     return <li key={index}>{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
   });
 
   const addItem = () => {
     if (newItem === "") return;
-    const newItems = [...items, newItem];
+    const newItems = items ? [...items, newItem] : [newItem];
     setItems(newItems);
     setNewItem("")
     updateLocalStorage(newItems);
   }
 
-  const updateLocalStorage = (newItems: string[]) => {
+  const resetAllItems = () => {
+    setItems([]);
+    updateLocalStorage(null);
+  }
+  const updateLocalStorage = (newItems: string[] | null) => {
+    if(newItems) localStorage.clear();
     localStorage.setItem('items', JSON.stringify(newItems))
   }
 
@@ -54,6 +59,7 @@ const Home: NextPage = () => {
           <input type="text" onChange={e => setNewItem(e.target.value)} value={newItem}/>
         </label>
         <button onClick={addItem}>追加</button>
+        <button onClick={resetAllItems}>リセット</button>
       </form>
     </div>
   )
