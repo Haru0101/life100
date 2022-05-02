@@ -4,15 +4,10 @@ import { useEffect, useState } from 'react';
 const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
   const [newItem, setNewItem] = useState<string>('');
-  const isCompleted = useState<boolean>(false);
 
   const listItems = items?.map((item, index) => {
-    return <li className='w-1/2' key={index}><input type='checkbox' onChange={()=>completeItem()} name='' id='' />{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
+    return <li className='w-1/2' key={index}><input type='checkbox' name='' id='' />{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
   });
-
-  const completeItem = () => {
-    
-  }
 
   const addItem = () => {
     if (newItem === '') return;
