@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
   const [items, setItems] = useState<string[]>([]);
-  const [newItem, setNewItem] = useState("");
+  const [newItem, setNewItem] = useState<string>("");
 
   const listItems = items?.map((item, index) => {
     return <li key={index}>{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
