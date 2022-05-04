@@ -1,19 +1,30 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react';
 
+type Item = {
+  content: string;
+  isDone: boolean;
+}
+
 const Home: NextPage = () => {
-  const [items, setItems] = useState<string[]>([]);
-  const [newItem, setNewItem] = useState<string>('');
+  const [items, setItems] = useState<Item[]>([]);
+  const [newItem, setNewItem] = useState<Item>({
+    content: '',
+    isDone: false
+  });
 
   const listItems = items?.map((item, index) => {
-    return <li className='w-1/2' key={index}><input type='checkbox' name='' id='' />{item}<button onClick={() => deleteItem(index)}>削除</button></li>;
+    return <li className='w-1/2' key={index}><input type='checkbox' name='' id='' />{item.content}<button onClick={() => deleteItem(index)}>削除</button></li>;
   });
 
   const addItem = () => {
-    if (newItem === '') return;
+    if (newItem.content === '') return;
     const newItems = items ? [...items, newItem] : [newItem];
     setItems(newItems);
-    setNewItem('')
+    setNewItem({
+      content: '',
+      isDone: false
+    })
     updateLocalStorage(newItems);
   }
 
@@ -21,7 +32,7 @@ const Home: NextPage = () => {
     setItems([]);
     updateLocalStorage(null);
   }
-  const updateLocalStorage = (newItems: string[] | null) => {
+  const updateLocalStorage = (newItems: Item[] | null) => {
     if(newItems) localStorage.clear();
     localStorage.setItem('items', JSON.stringify(newItems))
   }
@@ -56,7 +67,7 @@ const Home: NextPage = () => {
         </ol>
         <form onSubmit={submitForm}>
           <div className='flex items-center mb-2 '>
-              <input type='text' placeholder='やりたいことを入力' className='flex-auto border-solid border-2 mr-1' onChange={e => setNewItem(e.target.value)} value={newItem}/>
+              <input type='text' placeholder='やりたいことを入力' className='flex-auto border-solid border-2 mr-1' onChange={e => setNewItem({content: e.target.value, isDone: false})} value={newItem.content}/>
             <button className='text-white bg-blue-700 font-medium text-sm px-2.5 py-1' onClick={addItem}>追加</button>
           </div>
           <div className='text-center'><button className='block w-full border-dashed border-2 text-sm px-2.5 py-1' onClick={resetAllItems}>リセット</button></div>
