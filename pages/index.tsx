@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   });
 
   const listItems = items?.map((item, index) => {
-    return <li className='w-1/2' key={index}><input type='checkbox' checked={item.isDone} onChange={e => completeItem(index, e.target.checked)} name='' id='' />{item.content}<button onClick={() => deleteItem(index)}>削除</button></li>;
+    return <li className='w-1/2' key={index}><input type='checkbox' checked={item.isDone} onChange={e => completeItem(index, e.target.checked)} name='' id='' /><span className={item.isDone ? 'line-through' : ''}>{item.content}</span><button onClick={() => deleteItem(index)}>削除</button></li>;
   });
 
   const addItem = () => {
