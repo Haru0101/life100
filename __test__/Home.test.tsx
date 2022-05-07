@@ -4,5 +4,5 @@ import Home from '../pages/index'
 
 it('Should render title text', () => {
   render(<Home />)
-  expect(screen.getByText('life100')).toBeInTheDocument()
+  expect(screen.getByText('LIFE 100')).toBeInTheDocument()
 })
