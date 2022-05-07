@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-interface TITLE {
+interface Layout {
     children: any;
     title: string;
 }
 
-const Layout: React.FC<TITLE> = ({ children, title = 'LIFE 100' }) => {
+const Layout: React.FC<Layout> = ({ children, title = 'LIFE 100' }) => {
     return (
         <div>
             <Head>
