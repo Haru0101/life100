@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react';
+import Layout from '../components/Layout';
 
 type Item = {
   content: string;
@@ -67,6 +68,7 @@ const Home: NextPage = () => {
   }, [])
 
   return (
+    <Layout title="Home">
     <div className='h-screen flex justify-center items-center'>
       <div className='max-w-screen-sm'>
         <h1 className='text-3xl font-bold text-center mb-4'>LIFE 100</h1>
@@ -81,7 +83,8 @@ const Home: NextPage = () => {
           <div className='text-center'><button className='block w-full border-dashed border-2 text-sm px-2.5 py-1' onClick={resetAllItems}>リセット</button></div>
         </form>
       </div>
-    </div>
+      </div>
+    </Layout>
   )
 }
 
